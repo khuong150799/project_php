@@ -11,7 +11,7 @@ if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
 
     exit($message);
 }
-
+define("ENVIRONMENT","development");
 // Path to the front controller (this file)
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
 

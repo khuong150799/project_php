@@ -1,0 +1,22 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.table {border-collapse: collapse;
+  margin: auto;
+}
+
+.t-row{
+    width: auto;
+}
+.table-title{
+border: 1px solid;
+padding: 0 8px;
+}
+.img{
+    width: 64px;
+    height: 100%;
+    object-fit: contain;
+}

@@ -30,12 +30,20 @@ $routes->set404Override();
 /*
  * --------------------------------------------------------------------
  * Route Definitions
+
  * --------------------------------------------------------------------
  */
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+//upload file
+$routes->group('user', function ($routes){
+    $routes->get('form-add','userController::formAdd');
+    $routes->match(['get','post'],'update/(:num)','userController::edit/$1');
+    $routes->match(['get','post'],'create','userController::add');
+});
 
 /*
  * --------------------------------------------------------------------
