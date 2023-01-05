@@ -41,6 +41,7 @@ $routes->get('/', 'Home::index');
 //upload file
 $routes->group('user', function ($routes){
     $routes->get('form-add','userController::formAdd');
+    $routes->get('delete/(:num)','userController::remove/$1');
     $routes->match(['get','post'],'update/(:num)','userController::edit/$1');
     $routes->match(['get','post'],'create','userController::add');
 });

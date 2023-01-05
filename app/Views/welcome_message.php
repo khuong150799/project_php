@@ -19,9 +19,9 @@
                 <th class='table-title'>phone</th>
                 <th class='table-title'>address</th>
                 <th class='table-title'>image</th>
+                <th class='table-title'><a href="http://localhost:9999/user/form-add">add</a></th>
                 <th class='table-title'></th>
-                <th class='table-title'></th>
-                <th class='table-title'></th>
+              
             </tr>
         </thead>
         <tbody>
@@ -35,9 +35,8 @@
                 <th class='table-title'><img class="img"
                         src='http://localhost:9999/<?= $path_thumb.'/'.$values->thumb ?>'
                         alt="gái xinh"></th>
-                <th class='table-title'><a href="http://localhost:9999/user/form-add">add</a></th>
                 <th class='table-title'><a href="http://localhost:9999/user/update/<?= $values->id ?>">edit</a></th>
-                <th class='table-title'><button type='button'>Delete</button></th>
+                <th class='table-title'><a href="http://localhost:9999/user/delete/<?= $values->id ?>">delete</a></th>
             </tr>
             <?php }?>
         </tbody>
@@ -47,7 +46,7 @@
 
 </html>
 <?php
-echo "<pre>";
+// echo "<pre>";
 print_r(
-    $data_index
+    isset($date)?$date:null
 );
