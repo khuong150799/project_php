@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('HomeKhuong');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -36,7 +36,7 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'HomeKhuong::index');
 
 //upload file
 $routes->group('user', function ($routes){
@@ -46,6 +46,35 @@ $routes->group('user', function ($routes){
     $routes->match(['get','post'],'create','userController::add');
 });
 
+//Nghĩa
+$routes->group('search', function($routes){
+    $routes->get('/', 'Search::index');
+    $routes->get('index', 'Search::index');
+    $routes->match(['get', 'post'], 'add', 'Search::add');
+	$routes->match(['get', 'post'], 'setting/(:num)', 'Search::setting/$1');
+
+    $routes->group('ajax', function($routes){
+        $routes->post('getquery', 'Search::myQuery');
+        $routes->match(['get', 'post'] ,'del', 'Search::del');
+    });
+});
+
+//Huy
+// $routes->get('/', 'Home::index');
+$routes->get('report', 'Report::index');
+$routes->get('export-excel', 'Report::export');
+$routes->get('crud', 'CRUD::select');
+$routes->get('delete/(:any)', 'CRUD::deleteUser/$1');
+$routes->match(['get', 'post'], 'crud/insert', 'CRUD::insert');
+$routes->match(['get', 'post'], 'crud/update/(:any)', 'CRUD::insert/$1');
+
+//Kiên
+$routes->get('import', 'importExcel::index');
+$routes->get('download', 'importExcel::download');
+$routes->get('upload', 'importExcel::upload');
+// $routes->get('add', 'importExcel::add');
+$routes->match(['get' , 'post'], 'upload' , 'importExcel::upload');
+$routes->get('delete/(:num)' , 'importExcel::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

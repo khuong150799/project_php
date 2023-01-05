@@ -20,8 +20,11 @@
                 <th class='table-title'>address</th>
                 <th class='table-title'>image</th>
                 <th class='table-title'><a href="http://localhost:9999/user/form-add">add</a></th>
-                <th class='table-title'></th>
-              
+                <th class='table-title'><a href="http://localhost:9999/crud">Huy</a></th>
+                <th class='table-title'><a href="http://localhost:9999/search">Nghĩa</a></th>
+                <th class='table-title'><a href="http://localhost:9999/import">Kiên</a></th> 
+                <th class='table-title'><a href="http://localhost:9999/report">Huy export excel</a></th>
+
             </tr>
         </thead>
         <tbody>

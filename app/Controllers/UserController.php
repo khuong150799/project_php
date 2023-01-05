@@ -43,7 +43,7 @@
             $data_post['updated_at'] =time();
             $result = $this->UserModels->add($data_post);
             if($result['type'] == 'successful'){
-                return redirect()->to('http://localhost:9999')->with("success", 'Thêm thành công');
+                return redirect()->to('http://localhost:9999');
             };
         }
 
@@ -96,7 +96,7 @@
             // echo $data_post;
             $result = $this->UserModels->edit(array('id' => $id),$data_post);
             if($result['type'] == 'successful'){
-                return redirect()->to('http://localhost:9999')->with("success", 'Thêm thành công');
+                return redirect()->to('http://localhost:9999');
             };
         }
         $datas = [
@@ -120,7 +120,8 @@
         };
         $result = $this->UserModels->remove(array('id' => $id));
         if($result['type'] = 'successful'){
-            return redirect()->back()->with("success", 'Thêm thành công');
+            // return redirect()->back();
+            return redirect()->to(base_url('/'));
         };
     }
 
