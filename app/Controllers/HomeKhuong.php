@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\UserModel;
+
 class HomeKhuong extends BaseController
 {
-    function __construct(){
+    function __construct()
+    {
         $this->UserModels = new UserModel();
     }
     public function index()
@@ -14,6 +17,6 @@ class HomeKhuong extends BaseController
             'data_index' => $datas,
             'path_thumb' => 'uploads/image'
         ];
-        return view('welcome_message',$data);
+        return view('welcome_message', $data);
     }
 }

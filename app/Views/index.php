@@ -259,9 +259,9 @@
 
         <div class="heroe">
 
-            <h1>Import/Export data to Excel With CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
+            <h1>Ba Ngày Học Code Với CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
 
-            <h2>The small framework with powerful features</h2>
+            <h2>Framework nhỏ mà có võ</h2>
 
         </div>
 
@@ -274,11 +274,11 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Export data to Excel</h4>
+                        <h4>CRUD data</h4>
                     </div>
                     <div class="card-body">
 
-                        <a href="/report" class="btn btn-success mt-3">Export Excel</a>
+                        <a href="/crud" class="btn btn-success mt-3">Huy</a>
                     </div>
                 </div>
             </div>
@@ -286,11 +286,35 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>CRUD data</h4>
+                        <h4>Search data</h4>
                     </div>
                     <div class="card-body">
 
-                        <a href="/crud" class="btn btn-success mt-3">CRUD</a>
+                        <a href="/search" class="btn btn-success mt-3">Nghĩa</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 my-4">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Upload data</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <a href="/user" class="btn btn-success mt-3">Khương</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 my-4">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Import/Export data</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <a href="/import" class="btn btn-success mt-3">Kiên</a>
                     </div>
                 </div>
             </div>
