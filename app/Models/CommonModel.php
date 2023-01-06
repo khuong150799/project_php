@@ -21,18 +21,18 @@ class CommonModel extends Model
         // echo $this->db->getLastQuery();
         return $result->getResultArray();
     }
-    // public function SelectQuery($table, $where = array())
-    // {
-    //     $builder = $this->db->table($table);
-    //     $builder->select("*");
-    //     $builder->join('category', 'student.category=category.category_id', 'left');
-    //     if ($where) {
-    //         $builder->where($where);
-    //     }
-    //     $result = $builder->get();
-    //     // echo $this->db->getLastQuery();
-    //     return $result->getResultArray();
-    // }
+
+    public function selectCate($table)
+    {
+        $builder = $this->db->table($table);
+        // $builder->select("*");
+        // $builder->select("category_id");
+        // $builder->from("category");
+        // $builder->groupBy("category_id");  
+        $result = $builder->get();
+        // $result = $builder->get();
+        return $result->getResultArray();
+    }
 
     public function insertValue($table, $data)
     {

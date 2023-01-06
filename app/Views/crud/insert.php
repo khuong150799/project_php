@@ -14,11 +14,11 @@ if (!empty($editRecord)) {
     $editEmail = $editRecord->email;
     $editPhone = $editRecord->phone;
     $editCourse = $editRecord->course;
+    $editCategory = $editRecord->category;
     $action = base_url('crud/update/' . $editRecord->id);
     $buttonText = 'Sửa dữ liệu';
 } else {
     $buttonText = 'Thêm dữ liệu';
-
     $action = base_url('crud/insert');
 }
 ?>
@@ -91,12 +91,32 @@ if (!empty($editRecord)) {
                                             <?php } ?>
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="category" class="form-label">Xếp loại
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select name="category" class="form-select <?= $validation->getError('category') ? 'is-invalid' : '' ?>" value="<?php echo set_value('category', $editCategory ?? '') ?>">
+                                                <option value="1">--Chọn--</option>
+                                                <?php foreach ($dataCate as  $row) { ?>
+                                                    <option value="<?= $row['category_id'] ?>">
+                                                        <?= $row['category_title'] ?>
+                                                    </option>
+                                                <?php }
+                                                ?>
+                                            </select>
+                                            <?php if ($validation->getError('category')) { ?>
+                                                <div class="invalid-feedback">
+                                                    <?php echo $validation->getError('category'); ?>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
                                     <div class="col-12 d-flex justify-content-center">
                                         <button type="submit" class="btn btn-info text-white w-50"><?= $buttonText ?></button>
                                     </div>
                                 </div>
                             </form>
-                            <?php if (count($_POST) > 0) echo "Form Submitted!"; ?>
                         </div>
                     </div>
                 </div>

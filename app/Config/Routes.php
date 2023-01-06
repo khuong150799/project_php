@@ -36,33 +36,34 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'HomeKhuong::index');
+$routes->get('/', 'Home::index');
 
 //upload file
-$routes->group('user', function ($routes){
-    $routes->get('form-add','userController::formAdd');
-    $routes->get('delete/(:num)','userController::remove/$1');
-    $routes->match(['get','post'],'update/(:num)','userController::edit/$1');
-    $routes->match(['get','post'],'create','userController::add');
+$routes->group('user', function ($routes) {
+    $routes->get('/', 'HomeKhuong::index');
+    $routes->get('form-add', 'userController::formAdd');
+    $routes->get('delete/(:num)', 'userController::remove/$1');
+    $routes->match(['get', 'post'], 'update/(:num)', 'userController::edit/$1');
+    $routes->match(['get', 'post'], 'create', 'userController::add');
 });
 
 //Nghĩa
-$routes->group('search', function($routes){
+$routes->group('search', function ($routes) {
     $routes->get('/', 'Search::index');
     $routes->get('index', 'Search::index');
     $routes->match(['get', 'post'], 'add', 'Search::add');
-	$routes->match(['get', 'post'], 'setting/(:num)', 'Search::setting/$1');
+    $routes->match(['get', 'post'], 'setting/(:num)', 'Search::setting/$1');
 
-    $routes->group('ajax', function($routes){
+    $routes->group('ajax', function ($routes) {
         $routes->post('getquery', 'Search::myQuery');
-        $routes->match(['get', 'post'] ,'del', 'Search::del');
+        $routes->match(['get', 'post'], 'del', 'Search::del');
     });
 });
 
 //Huy
 // $routes->get('/', 'Home::index');
-$routes->get('report', 'Report::index');
-$routes->get('export-excel', 'Report::export');
+// $routes->get('report', 'Report::index');
+$routes->get('export-excel', 'CRUD::export');
 $routes->get('crud', 'CRUD::select');
 $routes->get('delete/(:any)', 'CRUD::deleteUser/$1');
 $routes->match(['get', 'post'], 'crud/insert', 'CRUD::insert');
@@ -73,8 +74,8 @@ $routes->get('import', 'importExcel::index');
 $routes->get('download', 'importExcel::download');
 $routes->get('upload', 'importExcel::upload');
 // $routes->get('add', 'importExcel::add');
-$routes->match(['get' , 'post'], 'upload' , 'importExcel::upload');
-$routes->get('delete/(:num)' , 'importExcel::delete/$1');
+$routes->match(['get', 'post'], 'upload', 'importExcel::upload');
+$routes->get('delete/(:num)', 'importExcel::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -18,7 +18,8 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-8">
-                        <a href="/crud/insert" class="btn btn-primary btn-sm rounded mb-2">Thêm dữ liệu</a>
+                        <a href="/crud/insert" class="btn btn-primary rounded mb-2">Thêm dữ liệu</a>
+                        <a href="<?= site_url('export-excel') ?>" class="btn btn-success rounded mb-2">Xuất Excel</a>
                     </div>
                     <div class="col-sm-4">
                         <div class="text-sm-end">
@@ -29,8 +30,8 @@
                                             <i class="fa fa-repeat"></i>
                                         </a>
                                     </h3>
-                                    <input type="text" class="form-control" placeholder="Tìm sinh viên..." name="q" value="" aria-describedby="button-addon2">
-                                    <button class="btn btn-primary" type="Submit" id="button-addon2">Tìm</button>
+                                    <input type="text" id="cta" class="form-control keySearch" placeholder="Tìm sinh viên..." name="q" value="" aria-describedby="button-addon2">
+                                    <button onclick="joinMailingList()" class="btn btn-primary clickSearch" type="Submit" id="button-addon2">Tìm</button>
                                 </div>
                             </form>
                         </div>
@@ -56,6 +57,7 @@
                                 foreach ($result as $row) {
                             ?>
                                     <tr>
+                                        <input type="hidden" class="item_id" value="<?= $row['id'] ?>" />
                                         <td><?= $i ?></td>
                                         <td><?php echo $row['fullname'] ?></td>
                                         <td><?php echo $row['email'] ?></td>
@@ -65,7 +67,8 @@
                                         <td><?php echo $row['updated_date'] ?  date("d-m-Y H:i:s", substr($row['updated_date'], 0, 10)) : date("d-m-Y H:i:s", substr($row['creation_date'], 0, 10)) ?></td>
                                         <td class="text-center">
                                             <a href="<?= base_url('crud/update/' . $row['id']) ?>" class="btn btn-primary rounded mx-1">Sửa</a>
-                                            <a href="<?= base_url('delete/' . $row['id']) ?>" class="btn btn-danger rounded mx-1">Xóa</a>
+                                            <!-- <a href="<?= base_url('delete/' . $row['id']) ?>" class="btn btn-danger rounded mx-1 deleteItem">Xóa</a> -->
+                                            <button class="btn btn-danger rounded mx-1 deleteItem">Xóa</button>
                                         </td>
                                     </tr>
 

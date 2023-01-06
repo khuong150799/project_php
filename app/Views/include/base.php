@@ -55,7 +55,47 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.deleteItem').click(function(e) {
+                e.preventDefault();
+                var delete_id = $(this).closest('tr').find('.item_id').val();
+                Swal.fire({
+                    title: 'Bạn có chắc chắn xóa không?',
+                    text: "Thao tác không thể quay lại!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'Khoan đã!',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK, Xóa nó!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        try {
+                            $.ajax({
+                                type: "GET",
+                                url: `delete/${delete_id}`,
+                                success: (response) => (
+                                    Swal.fire(
+                                        'Đã xóa!',
+                                        'Dữ liệu đã được xóa.',
+                                        'success'
+                                    ).then((ok) => {
+                                        if (ok) {
+                                            location.reload()
+                                        }
+                                    })
+                                )
+                            })
+                        } catch (error) {
+                            console.log("error", error);
+                        }
 
+                    }
+                })
+            })
+        });
+    </script>
 </body>
 
 </html>
