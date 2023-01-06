@@ -25,7 +25,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-sm-8">
-                                <a href="<?= site_url('/crud') ?>" class="btn btn-danger btn-sm rounded">Back</a>
+                                <a href="<?= base_url('/') ?>" class="btn btn-danger btn-sm rounded">Back</a>
                             </div>
                             <div class="col-sm-4">
 

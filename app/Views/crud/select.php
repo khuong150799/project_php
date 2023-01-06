@@ -55,7 +55,6 @@
                                 $i = 1;
                                 foreach ($result as $row) {
                             ?>
-
                                     <tr>
                                         <td><?= $i ?></td>
                                         <td><?php echo $row['fullname'] ?></td>
