@@ -23,9 +23,10 @@ class UserModel extends Model
         $where = 'fullname LIKE "%'.$query.'%" OR email LIKE "%'.$query.'%" OR phone LIKE "%'.$query.'%" OR address LIKE "%'.$query.'%" ORDER BY id '.$orderBy.' LIMIT '.$offset.','.$limit.'';
         $builder->where($where);
         $count = $builder->countAllResults(false);
-        // $data = $builder->get()->getResult();
-        $data = $builder->get();
+        $data = $builder->get()->getResult();
+        // $data = $builder->get();
         // print_r($count);
+         echo $this->db->getLastQuery();
         return array(
           'data' => $data,
           'totalRows' => $count,
@@ -36,7 +37,11 @@ class UserModel extends Model
         $data = $builder->get()->getResult();
         $count = $builder->countAll();
         // print_r($count);
-        return $data;
+        // echo $this->db->getLastQuery();
+        return array(
+          'data' => $data,
+          'totalRows' => $count,
+        );
       }
 
     }

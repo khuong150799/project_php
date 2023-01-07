@@ -43,7 +43,7 @@
             $data_post['updated_at'] =time();
             $result = $this->UserModels->add($data_post);
             if($result['type'] == 'successful'){
-                return redirect()->to('http://localhost:9999');
+                return redirect()->to('http://localhost:9999/user');
             };
         }
 
@@ -96,7 +96,7 @@
             // echo $data_post;
             $result = $this->UserModels->edit(array('id' => $id),$data_post);
             if($result['type'] == 'successful'){
-                return redirect()->to('http://localhost:9999');
+                return redirect()->to('http://localhost:9999/user');
             };
         }
         $datas = [
@@ -121,7 +121,7 @@
         $result = $this->UserModels->remove(array('id' => $id));
         if($result['type'] = 'successful'){
             // return redirect()->back();
-            return redirect()->to(base_url('/'));
+            return redirect()->to(base_url('/user'));
         };
     }
 
