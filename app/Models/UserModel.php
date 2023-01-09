@@ -13,20 +13,22 @@ class UserModel extends Model
     function __construct(){
       $this->db  = \Config\Database::connect('default');
     }
-    function getAll($query=null,$orderBy=null,$offset='0',$limit='10'){
+    function getAll($query=null,$orderBy=null,$offset='0',$limit='1'){
       $builder = $this->db->table($this->table);
-      print_r($query);
-      print_r($orderBy);
-      print_r($offset);
-      print_r($limit);
+      // print_r($query);
+      // print_r($orderBy);
+      // print_r($offset);
+      // print_r($limit);
       if($query){
         $where = 'fullname LIKE "%'.$query.'%" OR email LIKE "%'.$query.'%" OR phone LIKE "%'.$query.'%" OR address LIKE "%'.$query.'%" ORDER BY id '.$orderBy.' LIMIT '.$offset.','.$limit.'';
         $builder->where($where);
-        $count = $builder->countAllResults(false);
         $data = $builder->get()->getResult();
+        $whereNotLimit = 'fullname LIKE "%'.$query.'%" OR email LIKE "%'.$query.'%" OR phone LIKE "%'.$query.'%" OR address LIKE "%'.$query.'%"';
+        $builder->where($whereNotLimit);
+        $count = $builder->countAllResults(false);
+        echo $this->db->getLastQuery();
         // $data = $builder->get();
-        // print_r($count);
-         echo $this->db->getLastQuery();
+        print_r($count);
         return array(
           'data' => $data,
           'totalRows' => $count,
@@ -34,10 +36,12 @@ class UserModel extends Model
         // return $data;
 
       }else{
+        $builder->orderBy('id','DESC')->limit($limit,$offset);
+        // $builder->limit($offset,$limit);
         $data = $builder->get()->getResult();
+        echo $this->db->getLastQuery();
         $count = $builder->countAll();
         // print_r($count);
-        // echo $this->db->getLastQuery();
         return array(
           'data' => $data,
           'totalRows' => $count,

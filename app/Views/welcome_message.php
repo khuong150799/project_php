@@ -22,7 +22,7 @@
                         <i class="fa fa-repeat"></i>
                     </a>
                 </h3>
-                <input type="text" class="form-control" placeholder="Tìm sinh viên..." id= 'search-inp' value=""
+                <input type="text" class="form-control" placeholder="Tìm sinh viên..." id= 'search-inp' value="<?= isset($value_search)?$value_search:'' ?>"
                     aria-describedby="button-addon2">
                 <button class="btn btn-primary" type="Submit" id="button-addon2">Tìm</button>
             </div>
@@ -56,7 +56,7 @@
             </tbody>
         </table>
         <div><?php for ($i=1; $i <= $total_page ; $i++) { ?>
-            <button class='paganation' data-index = "<?= $i ?>"><?= $i ?></button>
+            <a class='paganation' href="<?= isset($value_search)?base_url('/user/?search='.$value_search.'&page='.$i.''):base_url('/user/?page='.$i.'') ?>"><?= $i ?></a>
       <?php  } ?></div>
     </div>
 
@@ -69,9 +69,8 @@ const valueSearch = document.getElementById("search-inp");
 let i = 1;
 button.onclick = (e) => {
     e.preventDefault()
-    console.log(i++);
+    // location.href = "http://localhost:9999/user";
     const valueInp = valueSearch.value
-    console.log(valueInp);
     axios({
             mehtod: 'get',
             url: 'http://localhost:9999/user',
@@ -79,14 +78,13 @@ button.onclick = (e) => {
                 search: valueInp,
                 orderBy: 'DESC',
                 offset: '0',
-                limit: '2',
+                limit: '1',
             }
         })
         .then(data => {
             const table = document.getElementById('table-search');
+            // const valueSearch = document.getElementById('search-inp');
             table.innerHTML = data.data
-            console.log(table);
-            console.log(data);
         })
         .catch(err => {
             console.log(err);
@@ -94,9 +92,6 @@ button.onclick = (e) => {
 
 
 }
-
-const paganation = document.querySelectorAll('.paganation')
-console.log(paganation);
 </script>
 <?php
 // echo "<pre>";
