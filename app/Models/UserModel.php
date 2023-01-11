@@ -26,7 +26,7 @@ class UserModel extends Model
         $whereNotLimit = 'fullname LIKE "%'.$query.'%" OR email LIKE "%'.$query.'%" OR phone LIKE "%'.$query.'%" OR address LIKE "%'.$query.'%"';
         $builder->where($whereNotLimit);
         $count = $builder->countAllResults(false);
-        echo $this->db->getLastQuery();
+        // echo $this->db->getLastQuery();
         // $data = $builder->get();
         print_r($count);
         return array(
@@ -39,7 +39,7 @@ class UserModel extends Model
         $builder->orderBy('id','DESC')->limit($limit,$offset);
         // $builder->limit($offset,$limit);
         $data = $builder->get()->getResult();
-        echo $this->db->getLastQuery();
+        // echo $this->db->getLastQuery();
         $count = $builder->countAll();
         // print_r($count);
         return array(

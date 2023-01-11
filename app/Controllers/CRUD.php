@@ -16,26 +16,29 @@ class CRUD extends BaseController
     public function select()
     {
         $model = new CommonModel();
+        $query = '';
         if ($this->request->getGet('q')) {
             $query = $this->request->getGet('q');
-            $result = $model->SelectQuery('student', $query);
-            $data = [
-                'title' => 'CRUD',
-                'template' => $this->template . 'select',
-                'result' => $result,
-            ];
-        } else {
-            $result = $model->SelectQuery('student');
-            $data = [
-                'title' => $this->title,
-                'template' => $this->template . 'select',
-                'result' => $result,
-            ];
-            // $data = [
-            //     'title' => 'CRUD',
-            //     'result' => $result,
-            // ];
         }
+            
+        $result = $model->SelectQuery('student', $query);
+        $data = [
+            'title' => $this->title,
+            'template' => $this->template . 'select',
+            'result' => $result,
+        ];
+        // } else {
+        //     $result = $model->SelectQuery('student');
+        //     $data = [
+        //         'title' => $this->title,
+        //         'template' => $this->template . 'select',
+        //         'result' => $result,
+        //     ];
+        //     // $data = [
+        //     //     'title' => 'CRUD',
+        //     //     'result' => $result,
+        //     // ];
+        // }
 
         return view('default', $data);
         // return view('crud/select', $data);

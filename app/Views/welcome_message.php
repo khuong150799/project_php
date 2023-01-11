@@ -8,9 +8,7 @@
     <title>Upload file</title>
     <link rel="stylesheet" href="http://localhost:9999/style.css">
     <script src="https://use.fontawesome.com/c9dc1e884c.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
-        integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js" integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -22,12 +20,11 @@
                         <i class="fa fa-repeat"></i>
                     </a>
                 </h3>
-                <input type="text" class="form-control" placeholder="Tìm sinh viên..." id= 'search-inp' value="<?= isset($value_search)?$value_search:'' ?>"
-                    aria-describedby="button-addon2">
+                <input type="text" class="form-control" placeholder="Tìm sinh viên..." id='search-inp' value="<?= isset($value_search) ? $value_search : '' ?>" aria-describedby="button-addon2">
                 <button class="btn btn-primary" type="Submit" id="button-addon2">Tìm</button>
             </div>
         </form>
-        <table  class='table'>
+        <table class='table'>
             <thead>
                 <tr class="t-row">
                     <th class='table-title'>fullname</th>
@@ -40,61 +37,56 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach(isset($data_index)?$data_index:null as $values){ ?>
-                <tr>
-                    <th class='table-title'><?= $values->fullname ?></th>
-                    <th class='table-title'><?= $values->email ?></th>
-                    <th class='table-title'><?= $values->phone ?></th>
-                    <th class='table-title'><?= $values->address ?></th>
-                    <th class='table-title'><img class="img"
-                            src='http://localhost:9999/<?= $path_thumb.'/'.$values->thumb ?>' alt="gái xinh"></th>
-                    <th class='table-title'><a href="http://localhost:9999/user/update/<?= $values->id ?>">edit</a></th>
-                    <th class='table-title'><a href="http://localhost:9999/user/delete/<?= $values->id ?>">delete</a>
-                    </th>
-                </tr>
-                <?php }?>
+                <?php foreach (isset($data_index) ? $data_index : null as $values) { ?>
+                    <tr>
+                        <th class='table-title'><?= $values->fullname ?></th>
+                        <th class='table-title'><?= $values->email ?></th>
+                        <th class='table-title'><?= $values->phone ?></th>
+                        <th class='table-title'><?= $values->address ?></th>
+                        <th class='table-title'><img class="img" src='http://localhost:9999/<?= $path_thumb . '/' . $values->thumb ?>' alt="gái xinh"></th>
+                        <th class='table-title'><a href="http://localhost:9999/user/update/<?= $values->id ?>">edit</a></th>
+                        <th class='table-title'><a href="http://localhost:9999/user/delete/<?= $values->id ?>">delete</a>
+                        </th>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
-        <div><?php for ($i=1; $i <= $total_page ; $i++) { ?>
-            <a class='paganation' href="<?= isset($value_search)?base_url('/user/?search='.$value_search.'&page='.$i.''):base_url('/user/?page='.$i.'') ?>"><?= $i ?></a>
-      <?php  } ?></div>
+        <div><?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                <a class='paganation' href="<?= isset($value_search) ? base_url('/user/?search=' . $value_search . '&page=' . $i . '') : base_url('/user/?page=' . $i . '') ?>"><?= $i ?></a>
+            <?php  } ?>
+        </div>
     </div>
 
 </body>
 
 </html>
 <script>
-const button = document.getElementById('button-addon2');
-const valueSearch = document.getElementById("search-inp");
-let i = 1;
-button.onclick = (e) => {
-    e.preventDefault()
-    // location.href = "http://localhost:9999/user";
-    const valueInp = valueSearch.value
-    axios({
-            mehtod: 'get',
-            url: 'http://localhost:9999/user',
-            params: {
-                search: valueInp,
-                orderBy: 'DESC',
-                offset: '0',
-                limit: '1',
-            }
-        })
-        .then(data => {
-            const table = document.getElementById('table-search');
-            // const valueSearch = document.getElementById('search-inp');
-            table.innerHTML = data.data
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    const button = document.getElementById('button-addon2');
+    const valueSearch = document.getElementById("search-inp");
+    let i = 1;
+    button.onclick = (e) => {
+        e.preventDefault()
+        // location.href = "http://localhost:9999/user";
+        const valueInp = valueSearch.value
+        axios({
+                mehtod: 'get',
+                url: 'http://localhost:9999/user',
+                params: {
+                    search: valueInp,
+                    orderBy: 'DESC',
+                    offset: '0',
+                    limit: '1',
+                }
+            })
+            .then(data => {
+                const table = document.getElementById('table-search');
+                // const valueSearch = document.getElementById('search-inp');
+                table.innerHTML = data.data
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
 
-}
+    }
 </script>
-<?php
-// echo "<pre>";
-print_r(
-    isset($data_index)?$data_index:null
-);

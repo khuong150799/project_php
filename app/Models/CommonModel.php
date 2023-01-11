@@ -6,12 +6,12 @@ use CodeIgniter\Model;
 
 class CommonModel extends Model
 {
-    public function SelectQuery($table, $where = NULL)
+    public function SelectQuery($table, $where = '')
     {
         $builder = $this->db->table($table);
         $builder->select("*");
         $builder->join('category', 'student.category=category.category_id', 'left');
-        if ($where) {
+        if ($where != '') {
             $builder->like('fullname', trim($where));
             $builder->orLike('email', trim($where));
             $builder->orLike('phone', trim($where));
