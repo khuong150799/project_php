@@ -28,7 +28,6 @@
                 $filename = pathinfo($_FILES['image']["name"], PATHINFO_FILENAME);               
                 $data_post['image'] = $filename.'.'.$type;
 
-
                 $thumb =str_replace(' ', '-', $filename.'_'.date('dmYHis').'.'.$type);
                 $data_post['thumb'] = $thumb;
                 $file = $this->request->getFile('image');
@@ -37,8 +36,7 @@
                 $this->UserModels->uploads($thumb);
             };
             // $file->move($this->'uploads/thumb' . date("Y") . '/' . date("m") . '/' , $cvName);
-            
-
+           
             $data_post['created_at'] =time();
             $data_post['updated_at'] =time();
             $result = $this->UserModels->add($data_post);
@@ -72,7 +70,7 @@
                         unlink($fileImageOld);
                     }
                 }
-            } catch (\Throwable $th) {
+            } catch (Throwable $th) {
                 throw $th;
             }
             if(isset($_FILES['image'])){

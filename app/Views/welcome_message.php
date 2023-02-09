@@ -51,8 +51,9 @@
                 <?php } ?>
             </tbody>
         </table>
-        <div><?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                <a class='paganation' href="<?= isset($value_search) ? base_url('/user/?search=' . $value_search . '&page=' . $i . '') : base_url('/user/?page=' . $i . '') ?>"><?= $i ?></a>
+        <div>
+           <?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                <button onclick="panagition(event)" class='paganation'><?= $i ?></button>
             <?php  } ?>
         </div>
     </div>
@@ -62,26 +63,38 @@
 </html>
 <script>
     const button = document.getElementById('button-addon2');
+    const panigations = document.querySelectorAll(".paganation");
     const valueSearch = document.getElementById("search-inp");
-    let i = 1;
-    button.onclick = (e) => {
+    
+    function handelClick(e,page = 1){
         e.preventDefault()
+        let limit = 1
+        let offset = (page - 1) * limit
+        // limit.toString
+        // console.log('offset',offset);
         // location.href = "http://localhost:9999/user";
         const valueInp = valueSearch.value
+        // console.log('valueInp',valueInp);
         axios({
                 mehtod: 'get',
                 url: 'http://localhost:9999/user',
                 params: {
                     search: valueInp,
                     orderBy: 'DESC',
-                    offset: '0',
-                    limit: '1',
+                    offset,
+                    limit
                 }
             })
             .then(data => {
                 const table = document.getElementById('table-search');
-                // const valueSearch = document.getElementById('search-inp');
-                table.innerHTML = data.data
+
+                //lấy nội dung cần lấy trong file html do gọi api trả về
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(data.data, "text/html");
+                let tableSearchElement = doc.getElementById("table-search");
+                let content = tableSearchElement.innerHTML;
+                table.innerHTML = content
+                // console.log(content);
             })
             .catch(err => {
                 console.log(err);
@@ -89,4 +102,10 @@
 
 
     }
+    button.addEventListener('click',handelClick)
+    function panagition(e){
+        handelClick(e,e.target.innerText)
+        // console.log(e.target.innerText);
+    }
+  
 </script>

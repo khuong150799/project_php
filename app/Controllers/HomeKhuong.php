@@ -18,7 +18,7 @@ class HomeKhuong extends BaseController
         $offset = '0';
         $limit = '1';
         if($this->request->getGet('search')){
-            $query = $this->request->getGet('search'); 
+            $query = trim($this->request->getGet('search')); 
         }
         if($this->request->getGet('orderBy')){
             $orderBy = $this->request->getGet('orderBy');
@@ -26,9 +26,8 @@ class HomeKhuong extends BaseController
         if($this->request->getGet('limit')){
             $limit = $this->request->getGet('limit');
         }
-        if($this->request->getGet('page')){
-            $page = $this->request->getGet('page');
-            $offset = ($page -1) * $limit;
+        if($this->request->getGet('offset')){
+            $offset = $this->request->getGet('offset');
         }
         $datas = $this->UserModels->getAll($query,$orderBy,$offset,$limit);
         $totalPage = ceil($datas['totalRows']/$limit);

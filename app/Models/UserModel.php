@@ -28,7 +28,7 @@ class UserModel extends Model
         $count = $builder->countAllResults(false);
         // echo $this->db->getLastQuery();
         // $data = $builder->get();
-        print_r($count);
+        // print_r($count);
         return array(
           'data' => $data,
           'totalRows' => $count,

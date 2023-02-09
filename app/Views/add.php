@@ -77,7 +77,8 @@
                                             <label for="agent_course" class="form-label">Image<span class="text-danger">
                                                     *</span></label>
                                             <input type="file" id="agent_course" name="image"
-                                                class="form-control" value="" required>
+                                                class="form-control image" value="" required>
+                                                <img src="<?= base_url('uploads/thumb/anh-gai-xinh-cuc-dep_09022023144628.jpeg') ?>" id="preview">
                                         </div>
                                         <div class="col-12 d-flex justify-content-center">
                                             <button type="submit" class="btn btn-info text-white w-50">Submit</button>
@@ -94,6 +95,21 @@
 </body>
 
 </html>
+<script>
+const input = document.querySelector('.image');
+const preview = document.querySelector('#preview');
+
+input.addEventListener('change', function() {
+   const file = this.files[0];
+   const reader = new FileReader();
+
+   reader.addEventListener('load', function() {
+      preview.setAttribute('src', this.result);
+   });
+
+   reader.readAsDataURL(file);
+});
+</script>
 <?php
 echo "<pre>";
 print_r(
